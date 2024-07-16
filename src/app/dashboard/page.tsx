@@ -1,5 +1,7 @@
+import Link from 'next/link'
+
 const Page = () => {
-	return <h1>DashboardPage</h1>
+	return <section></section>
 }
 
 export default Page

@@ -25,6 +25,14 @@ const config: Config = {
 				lg: '0 10px 15px -3px rgb(255, 255, 255/ 0.12), 0 4px 6px -4px rgb(255, 255, 255/ 0.12)',
 			},
 		},
+		screens: {
+			mobile: '420px',
+			lgMobile: '480px',
+			md: '640px',
+			tablet: '768px',
+			laptop: '1024px',
+			desktop: '1280px',
+		},
 	},
 	plugins: [],
 }

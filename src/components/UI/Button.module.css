@@ -1,15 +1,13 @@
 .button {
-	padding: 0.5rem 1.2rem;
-	border: 1px solid var(--hoverColor2);
 	border-radius: 8px;
 	box-shadow: var(--shadow-sm);
-	font-size: 14px;
+	font-size: 1rem;
+	font-weight: 600;
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	min-width: 3rem;
-	font-weight: 500;
 	overflow: hidden;
 	transition: all 0.25 ease;
 }
@@ -21,7 +19,6 @@
 .disabled {
 	opacity: 0.4;
 	cursor: default;
-	background-color: var(--hoverColor2);
 }
 
 .text {
@@ -43,11 +40,6 @@
 	box-shadow: none;
 }
 
-.button.primary {
-	background-color: var(--hoverColor);
-	color: white;
-}
-
 .left {
 	margin-right: 8px;
 	order: -1;
@@ -58,7 +50,7 @@
 	order: 1;
 }
 
-.spinner {
+/* .spinner {
 	width: 18px;
 	height: 18px;
 	display: inline-block;
@@ -75,4 +67,4 @@
 	to {
 		transform: rotate(360deg);
 	}
-}
+} */

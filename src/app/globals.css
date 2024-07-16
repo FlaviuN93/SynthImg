@@ -4,10 +4,6 @@
 @tailwind utilities;
 
 :root {
-	--foreground-rgb: 255, 255, 255;
-	--background-start-rgb: 0, 0, 0;
-	--background-end-rgb: 0, 0, 0;
-
 	--violet: '#7C71FF';
 	--violet2: '#6456FF';
 	--light: '#E4E4E7';
@@ -47,11 +43,13 @@ html {
 
 body {
 	container-type: inline-size;
+	background-color: #121826;
+	color: #e4e4e7;
 }
 
 h1 {
 	font-size: 3.75rem;
-	line-height: 2.5rem;
+	line-height: 4rem;
 }
 
 h2 {
@@ -62,4 +60,29 @@ h2 {
 h3 {
 	font-size: 1.25rem;
 	font-weight: 600;
+}
+.footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 1rem;
+	padding: 2rem 1rem 1rem 1rem;
+	background-color: rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+	.footer {
+		flex-direction: row;
+		align-items: start;
+		justify-content: space-between;
+		padding: 2rem;
+		gap: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.footer {
+		padding: 2rem;
+	}
 }
