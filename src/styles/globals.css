@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 255, 255, 255;
+	--background-start-rgb: 0, 0, 0;
+	--background-end-rgb: 0, 0, 0;
+
+	--violet: '#7C71FF';
+	--violet2: '#6456FF';
+	--light: '#E4E4E7';
+	--black: '#121826';
+	--black2: '#212936';
+	--gray: '#6C727F';
+	--darkGray: '#394150';
+	--error: '#FE3636';
+	--success: '#37B24D';
+
+	--shadow-sm: '0 1px 2px 0 rgb(255, 255, 255/ 0.05)';
+	--shadow-md: '0 4px 6px -1px rgb(255, 255, 255/ 0.1), 0 2px 4px -2px rgb(255, 255, 255/ 0.1)';
+	--shadow-lg: '0 10px 15px -3px rgb(255, 255, 255/ 0.12), 0 4px 6px -4px rgb(255, 255, 255/ 0.12)';
+	--backdropColor: rgba(0, 0, 0, 0.4);
+	--inputBg: rgba(255, 255, 255, 0.45);
+	--inputBgFocus: rgba(255, 255, 255, 0.55);
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: Inter, sans-serif;
+	font-synthesis: none;
+}
+
+*:focus {
+	outline: 1.5px solid var(--darkGray);
+}
+
+html {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	line-height: 1.5rem;
+	font-weight: 400;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+}
+
+body {
+	container-type: inline-size;
+}
+
+h1 {
+	font-size: 3.75rem;
+	line-height: 2.5rem;
+}
+
+h2 {
+	font-size: 2.5rem;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}

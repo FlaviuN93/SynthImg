@@ -1,0 +1,62 @@
+.inlineContainer {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	z-index: 100;
+}
+
+.tooltipContainer {
+	position: relative;
+}
+
+.tooltipIcon {
+	cursor: help;
+	color: var(--error);
+}
+
+.tooltipContent {
+	position: absolute;
+	max-width: 150px;
+	width: max-content;
+	border-radius: 6px;
+	padding: 0.5rem;
+	font-size: 0.75rem;
+	font-weight: 500;
+	text-align: start;
+	color: white;
+	background-color: var(--error);
+}
+
+.top {
+	bottom: 50%;
+	right: 0;
+	margin-bottom: 5px;
+	transform: translateY(-25%);
+}
+
+.right {
+	top: 25%;
+	left: 50%;
+	transform: translateX(0);
+}
+
+.bottom {
+	top: 50%;
+	right: 0;
+	margin-top: 5px;
+	transform: translateY(25%);
+}
+
+.left {
+	top: 25%;
+	right: 50%;
+	transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+	.tooltipContent {
+		max-width: 200px;
+		font-size: 0.875rem;
+	}
+}

@@ -1,0 +1,90 @@
+.input {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	font-family: inherit;
+	padding-right: 3rem;
+	border-radius: 8px;
+	border: 1px solid var(--bgColor2);
+	background-color: var(--inputBg);
+	transition: border 0.2s, box-shadow 0.2s;
+	box-shadow: var(--shadow-xs);
+	position: relative;
+}
+
+.input:disabled {
+	background-color: var(--hoverColor2);
+	cursor: not-allowed;
+}
+
+.input::placeholder {
+	color: var(--gray-2);
+	font-size: 14px;
+}
+
+.input:focus {
+	outline: none;
+	box-shadow: var(--shadow-sm);
+	background-color: var(--inputBgFocus);
+}
+
+.label {
+	text-align: start;
+	font-size: 1rem;
+	color: var(--themeColor);
+	font-weight: 500;
+}
+
+.itemList {
+	position: absolute;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	border-radius: 4px;
+	color: var(--themeColor2);
+	background-color: var(--bgColor);
+	border: 1px solid var(--bgColor2);
+	box-shadow: var(--shadow-sm);
+	height: 180px;
+	width: calc(100% - 5px);
+	margin-top: 2px;
+	min-width: 180px;
+	overflow-y: scroll;
+}
+
+.item {
+	transition: all 0.2s;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.45rem 1.25rem;
+	cursor: pointer;
+}
+
+.item:hover {
+	background-color: var(--bgColor3);
+}
+
+.item .checkboxItem {
+	width: 18px;
+	height: 18px;
+}
+
+.inputIcon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 10px;
+}
+
+.inputIcon:focus {
+	outline: none;
+}
+
+.error {
+	border: 1px solid var(--error);
+	box-shadow: 0 1px 2px rgba(242, 170, 170, 0.2);
+}
+
+.error:focus {
+	box-shadow: 0 1px 2px rgba(242, 170, 170, 0.5);
+}
