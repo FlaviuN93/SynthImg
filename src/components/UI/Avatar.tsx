@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, MouseEvent, ReactNode, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './Avatar.module.css'

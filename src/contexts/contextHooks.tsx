@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { DropdownContext } from './DropdownContext'
+import { MenuContext } from './MenuContext'
 import { ModalContext } from './ModalContext'
 
-export const useDropdownContext = () => {
-	const context = useContext(DropdownContext)
+export const useMenuContext = () => {
+	const context = useContext(MenuContext)
 	if (!context) {
 		throw new Error('Dropdown context must be used within a DropdownProvider')
 	}

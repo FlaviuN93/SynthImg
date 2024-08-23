@@ -1,45 +1,45 @@
 import { FC, ReactNode, RefObject, createContext, useRef, useState } from 'react'
 
-interface DropdownContextProps {
+interface MenuContextProps {
 	isOpen: boolean
 	handleClose: () => void
-	handleToggle: () => void
-	dropdownBtnRef: RefObject<HTMLButtonElement>
+	handleOpen: () => void
+	menuBtnRef: RefObject<HTMLButtonElement>
 	menuRef: RefObject<HTMLDivElement>
 	exclusionRef: RefObject<HTMLDivElement>
 	selectedItemId: string | null
 	handleSelect: (itemId: string) => void
 }
 
-export const DropdownContext = createContext({} as DropdownContextProps)
+export const MenuContext = createContext({} as MenuContextProps)
 
-export const DropdownProvider: FC<{ children: ReactNode }> = ({ children }) => {
-	const [isOpen, setIsOpen] = useState(false)
+export const MenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
+	const [isOpen, setIsOpen] = useState(true)
 	const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
 	const menuRef = useRef<HTMLDivElement>(null)
-	const dropdownBtnRef = useRef<HTMLButtonElement>(null)
+	const menuBtnRef = useRef<HTMLButtonElement>(null)
 	const exclusionRef = useRef<HTMLDivElement>(null)
 
 	const handleSelect = (itemId: string) => setSelectedItemId(itemId)
 
 	const handleClose = () => setIsOpen(false)
 
-	const handleToggle = () => setIsOpen(!isOpen)
+	const handleOpen = () => setIsOpen(true)
 
 	return (
-		<DropdownContext.Provider
+		<MenuContext.Provider
 			value={{
 				isOpen,
 				handleClose,
-				handleToggle,
+				handleOpen,
 				menuRef,
-				dropdownBtnRef,
+				menuBtnRef,
 				selectedItemId,
 				handleSelect,
 				exclusionRef,
 			}}
 		>
 			{children}
-		</DropdownContext.Provider>
+		</MenuContext.Provider>
 	)
 }

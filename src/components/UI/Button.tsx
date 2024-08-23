@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, MouseEvent, ReactNode } from 'react'
 import { TailwindClasses, tButtonType } from '../../utils/types'
 import styles from './Button.module.css'
