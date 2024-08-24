@@ -4,12 +4,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 import Tooltip from '../UI/Tooltip'
 import useMediaQuery from '../../hooks/useMediaQuery'
-import { Technology } from '../../services/types'
 import { TailwindClasses } from '../../utils/types'
 
 interface MultiSelectProps {
 	onChange: (selectedItem: string[]) => void
-	items: Technology[] | undefined
 	placeholderValue: string[]
 	placeholder: string
 	resetRef: MutableRefObject<(event: MouseEvent) => void>
@@ -18,16 +16,7 @@ interface MultiSelectProps {
 	tooltipStyles?: TailwindClasses
 }
 
-const MultiSelect: FC<MultiSelectProps> = ({
-	items = [],
-	placeholder,
-	label,
-	error,
-	tooltipStyles,
-	placeholderValue,
-	resetRef,
-	onChange,
-}) => {
+const MultiSelect: FC<MultiSelectProps> = ({ placeholder, label, error, tooltipStyles, placeholderValue, resetRef, onChange }) => {
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 	const [isOpen, setIsOpen] = useState(false)
 	const isLaptop = useMediaQuery('(min-width:1024px)')
@@ -45,12 +34,12 @@ const MultiSelect: FC<MultiSelectProps> = ({
 		setIsOpen(false)
 	}
 
-	const handleToggleItem = async (selectedItem: Technology) => {
-		setSelectedItems((prevItems) => {
-			const index = prevItems.indexOf(selectedItem.name)
-			if (index === -1) return [...prevItems, selectedItem.name]
-			else return prevItems.filter((item) => item !== selectedItem.name)
-		})
+	const handleToggleItem = async (selectedItem: any) => {
+		// setSelectedItems((prevItems) => {
+		// 	const index = prevItems.indexOf(selectedItem.name)
+		// 	if (index === -1) return [...prevItems, selectedItem.name]
+		// 	else return prevItems.filter((item) => item !== selectedItem.name)
+		// })
 	}
 
 	useEffect(() => {
@@ -85,7 +74,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
 				)}
 				{isOpen && (
 					<ul className={styles.itemList} ref={selectRef}>
-						{items.map((item) => (
+						{/* {items.map((item) => (
 							<label key={item.id} className={styles.item}>
 								<input
 									name={item.name}
@@ -96,7 +85,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
 								/>
 								{item.name}
 							</label>
-						))}
+						))} */}
 					</ul>
 				)}
 			</div>

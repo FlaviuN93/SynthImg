@@ -1,13 +1,10 @@
-import { useId, useState } from 'react'
+import { FC, useId, useState } from 'react'
 import { TailwindClasses } from '../../utils/types'
 import styles from './Text.module.css'
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import Tooltip from '../UI/Tooltip'
 import useMediaQuery from '../../hooks/useMediaQuery'
 
-export interface TextProps<T extends FieldValues> {
-	name: Path<T>
-	register?: UseFormRegister<T>
+export interface TextProps {
 	placeholder: string
 	variant?: 'input' | 'textarea'
 	label?: string
@@ -19,9 +16,7 @@ export interface TextProps<T extends FieldValues> {
 	cols?: number
 }
 
-const Text = <T extends FieldValues>({
-	register,
-	name,
+const Text: FC<TextProps> = ({
 	disabled = false,
 	placeholder,
 	tooltipStyles = '',
@@ -31,7 +26,7 @@ const Text = <T extends FieldValues>({
 	error,
 	rows,
 	cols,
-}: TextProps<T>) => {
+}) => {
 	const uniqueId = useId()
 	const isLaptop = useMediaQuery('(min-width:1024px)')
 	const textClasses = `${styles.text} ${textStyles} ${error ? styles.error : ''}`
@@ -45,7 +40,6 @@ const Text = <T extends FieldValues>({
 			<div className='relative mt-1' onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
 				{variant === 'input' ? (
 					<input
-						{...register?.(name)}
 						className={textClasses}
 						id={label}
 						placeholder={placeholder}
@@ -58,7 +52,6 @@ const Text = <T extends FieldValues>({
 					/>
 				) : (
 					<textarea
-						{...register?.(name)}
 						className={textClasses}
 						id={label}
 						disabled={disabled}

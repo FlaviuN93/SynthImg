@@ -1,15 +1,12 @@
-import { ReactNode, useId, useRef, useEffect, useState, ChangeEvent } from 'react'
+import { ReactNode, useId, useRef, useEffect, useState, ChangeEvent, FC } from 'react'
 import { TailwindClasses, tPositions } from '../../utils/types'
 import { motion } from 'framer-motion'
 import styles from './FileInput.module.css'
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import Tooltip from '../UI/Tooltip'
 import useMediaQuery from '../../hooks/useMediaQuery'
 
-export interface IFileProps<T extends FieldValues> {
+export interface IFileProps {
 	onFileUpload: (file: File) => void
-	name: Path<T>
-	register?: UseFormRegister<T>
 	buttonText?: string
 	label?: string
 	icon?: ReactNode
@@ -20,20 +17,18 @@ export interface IFileProps<T extends FieldValues> {
 	fileContainerStyles?: TailwindClasses
 }
 
-const FileInput = <T extends FieldValues>({
+const FileInput: FC<IFileProps> = ({
 	fileStyles = '',
-	name,
 	label,
 	buttonText,
 	icon,
 	onFileUpload,
 	error,
-	register,
 	tooltipStyles,
 	tooltipPosition = 'right',
 
 	fileContainerStyles,
-}: IFileProps<T>) => {
+}) => {
 	const uniqueId = useId()
 	const divRef = useRef<HTMLDivElement>(null)
 	const [size, setSize] = useState({ width: '0', height: '0' })
@@ -77,11 +72,9 @@ const FileInput = <T extends FieldValues>({
 
 				<motion.input
 					animate={size}
-					name={name}
 					className={`absolute opacity-0 w-full mobile:w-auto `}
 					id={uniqueId}
 					onChange={handleSetFile}
-					ref={() => register?.(name)}
 					aria-describedby={`${uniqueId}-${name}`}
 					type='file'
 				/>
