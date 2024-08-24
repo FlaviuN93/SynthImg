@@ -1,4 +1,3 @@
-import MailForm from '@/components/Inputs/MailForm'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,7 +13,6 @@ const Page = () => {
 				<h2>Get in Touch</h2>
 				<h5>We`d love to hear from you! Here is how to get in touch:</h5>
 			</article>
-			{/* <MailForm /> */}
 
 			<article>
 				<h2>What can we help you with?</h2>
