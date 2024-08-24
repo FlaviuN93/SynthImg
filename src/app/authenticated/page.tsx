@@ -1,3 +1,5 @@
-export default function Authenticated() {
-	return <div>hello</div>
+const Page = () => {
+	return <h1>Authenticated</h1>
 }
+
+export default Page

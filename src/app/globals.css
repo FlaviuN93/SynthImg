@@ -28,7 +28,7 @@
 }
 
 *:focus {
-	outline: 1.5px solid var(--darkGray);
+	outline: none;
 }
 
 html {

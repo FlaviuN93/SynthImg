@@ -23,12 +23,7 @@
 	min-width: 200px;
 	height: 100%;
 	padding: 2rem 1rem;
-	z-index: 10;
-	transition: all 0.3s ease;
-}
-
-.activeMenu {
-	right: 0;
+	z-index: 10000;
 }
 
 .item {
@@ -49,12 +44,8 @@
 	width: 100%;
 }
 
-.item:hover,
-.item:active {
-	background-color: var(--violet);
-}
-
-.activeItem {
+.item:active,
+.item:hover {
 	background-color: var(--violet);
 }
 
@@ -69,6 +60,16 @@
 	justify-content: center;
 	align-items: center;
 	min-width: 2rem;
+}
+
+.menuToggleVisible {
+	visibility: visible;
+	opacity: 1;
+}
+
+.menuToggleHidden {
+	visibility: hidden;
+	opacity: 0;
 }
 
 .toggleImage {

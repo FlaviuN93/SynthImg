@@ -7,20 +7,15 @@ interface MenuContextProps {
 	menuBtnRef: RefObject<HTMLButtonElement>
 	menuRef: RefObject<HTMLDivElement>
 	exclusionRef: RefObject<HTMLDivElement>
-	selectedItemId: string | null
-	handleSelect: (itemId: string) => void
 }
 
 export const MenuContext = createContext({} as MenuContextProps)
 
 export const MenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
-	const [isOpen, setIsOpen] = useState(true)
-	const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
+	const [isOpen, setIsOpen] = useState(false)
 	const menuRef = useRef<HTMLDivElement>(null)
 	const menuBtnRef = useRef<HTMLButtonElement>(null)
 	const exclusionRef = useRef<HTMLDivElement>(null)
-
-	const handleSelect = (itemId: string) => setSelectedItemId(itemId)
 
 	const handleClose = () => setIsOpen(false)
 
@@ -34,8 +29,6 @@ export const MenuProvider: FC<{ children: ReactNode }> = ({ children }) => {
 				handleOpen,
 				menuRef,
 				menuBtnRef,
-				selectedItemId,
-				handleSelect,
 				exclusionRef,
 			}}
 		>
