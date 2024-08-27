@@ -37,3 +37,6 @@ export const allValuesValid = (data: ObjectType): boolean => {
 	}
 	return true
 }
+
+export const formatDateObject = (timestamp: Date) =>
+	timestamp.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })

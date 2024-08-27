@@ -10,3 +10,15 @@ export const rightMenuMovement = {
 
 export const disableRadiusRight = 'rounded-tl-md rounded-bl-md rounded-tr-none rounded-br-none'
 export const disableRadiusLeft = 'rounded-tr-md rounded-br-md rounded-tl-none rounded-bl-none'
+
+export const mockImages = [
+	'synthImg1.png',
+	'synthImg2.png',
+	'synthImg3.png',
+	'synthImg4.png',
+	'synthImg5.png',
+	'synthImg6.png',
+	'synthImg7.png',
+	'synthImg8.png',
+	'synthImg9.png',
+]

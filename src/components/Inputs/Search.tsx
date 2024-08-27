@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, FC, KeyboardEvent, useId, useState } from 'react'
 import { TailwindClasses } from '../../utils/types'
 import Button from '../UI/Button'
@@ -27,9 +29,13 @@ const Search: FC<SearchProps> = ({
 	const [query, setQuery] = useState('')
 	const uniqueId = useId()
 
-	const handleSearch = () => query.length >= minLength && onSearch(query)
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)
-	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSearch()
+	const handleSearch = (input: string) => input.length >= minLength && onSearch(input)
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setQuery(e.target.value)
+		handleSearch(e.target.value)
+	}
+
+	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSearch(query)
 
 	const buttonClasses = `bg-white/40 shadow-xs border border-solid border-[--light3] focus:shadow-sm py-2 px-2 hover:bg-white/50 ${
 		iconPos === 'right' ? disableRadiusLeft : disableRadiusRight
@@ -39,7 +45,12 @@ const Search: FC<SearchProps> = ({
 	return (
 		<div className={styles.searchContainer}>
 			{iconPos === 'left' && (
-				<Button icon={<MagnifyingGlassIcon className='h-6 w-6' />} onClick={handleSearch} buttonStyles={buttonClasses} variant='text' />
+				<Button
+					icon={<MagnifyingGlassIcon className='h-6 w-6' />}
+					onClick={() => handleSearch(query)}
+					buttonStyles={buttonClasses}
+					variant='text'
+				/>
 			)}
 
 			<input
@@ -58,7 +69,7 @@ const Search: FC<SearchProps> = ({
 					isLoading={isLoading}
 					buttonStyles={buttonClasses}
 					icon={<MagnifyingGlassIcon className='h-6 w-6' />}
-					onClick={handleSearch}
+					onClick={() => handleSearch(query)}
 					variant='text'
 				/>
 			)}
