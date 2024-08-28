@@ -38,5 +38,10 @@ export const allValuesValid = (data: ObjectType): boolean => {
 	return true
 }
 
-export const formatDateObject = (timestamp: Date) =>
-	timestamp.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+export const formatDateObject = (timestamp: Date) => {
+	const day = timestamp.toLocaleDateString('en-US', { day: 'numeric' })
+	const month = timestamp.toLocaleDateString('en-US', { month: 'short' })
+	const year = timestamp.toLocaleDateString('en-US', { year: 'numeric' })
+	if (Number(day) >= 10) return `${day}th ${month} ${year}`
+	else `${day} ${month} ${year}`
+}

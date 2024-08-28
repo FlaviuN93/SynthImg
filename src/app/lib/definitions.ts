@@ -14,4 +14,5 @@ export type Image = {
 	negativePrompt: string | null
 	resolution: string
 	seed: number
+	created_at: Date
 }

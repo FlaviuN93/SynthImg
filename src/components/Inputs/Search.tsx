@@ -1,78 +1,61 @@
 'use client'
 
-import { ChangeEvent, FC, KeyboardEvent, useId, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, FC, useId, useRef, useState } from 'react'
 import { TailwindClasses } from '../../utils/types'
-import Button from '../UI/Button'
-import { MagnifyingGlassIcon } from '@heroicons/react/16/solid'
-import styles from './Search.module.css'
-import { disableRadiusLeft, disableRadiusRight } from '../../utils/variables'
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/16/solid'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useDebouncedCallback } from 'use-debounce'
+import clsx from 'clsx'
 
 export interface SearchProps {
-	onSearch: (query: string) => void
 	name: string
 	placeholder: string
-	minLength?: number
-	iconPos?: 'left' | 'right'
 	searchStyles?: TailwindClasses
-	isLoading?: boolean
 }
 
-const Search: FC<SearchProps> = ({
-	onSearch,
-	placeholder,
-	searchStyles = '',
-	name,
-	iconPos = 'right',
-	minLength = 3,
-	isLoading = false,
-}) => {
-	const [query, setQuery] = useState('')
+const Search: FC<SearchProps> = ({ placeholder, searchStyles = '', name }) => {
+	const searchParams = useSearchParams()
+	const params = new URLSearchParams(searchParams)
+	const inputRef = useRef<HTMLInputElement>(null)
+	const pathname = usePathname()
+	const { replace } = useRouter()
 	const uniqueId = useId()
 
-	const handleSearch = (input: string) => input.length >= minLength && onSearch(input)
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setQuery(e.target.value)
-		handleSearch(e.target.value)
+	const handleSearch = useDebouncedCallback((input: string) => {
+		if (input) params.set('query', input)
+		else params.delete('query')
+		replace(`${pathname}?${params.toString()}`)
+	}, 300)
+
+	const handleClearQuery = () => {
+		params.delete('query')
+		if (inputRef.current) inputRef.current.value = ''
+		replace(`${pathname}?${params.toString()}`)
 	}
 
-	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSearch(query)
-
-	const buttonClasses = `bg-white/40 shadow-xs border border-solid border-[--light3] focus:shadow-sm py-2 px-2 hover:bg-white/50 ${
-		iconPos === 'right' ? disableRadiusLeft : disableRadiusRight
-	}`
-	const searchClasses = `${styles.searchInput} ${searchStyles}  ${iconPos === 'right' ? disableRadiusRight : disableRadiusLeft}`
+	const searchClasses = clsx(`rounded-lg peer block w-full border-2 border-darkGray outline-2 py-2.5 pl-[12px]
+		 bg-black placeholder:text-gray placeholder:font-medium placeholder:text-base ${searchStyles}`)
 
 	return (
-		<div className={styles.searchContainer}>
-			{iconPos === 'left' && (
-				<Button
-					icon={<MagnifyingGlassIcon className='h-6 w-6' />}
-					onClick={() => handleSearch(query)}
-					buttonStyles={buttonClasses}
-					variant='text'
-				/>
-			)}
-
+		<div className='relative flex flex-1 flex-shrink-0'>
 			<input
 				name={name}
+				ref={inputRef}
 				className={searchClasses}
 				placeholder={placeholder}
 				aria-placeholder={placeholder}
 				aria-describedby={`${uniqueId}-${name}`}
-				type='search'
-				onChange={handleChange}
-				onKeyDown={handleKeyDown}
+				defaultValue={searchParams.get('query')?.toString()}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearch(e.target.value)}
 			/>
-
-			{iconPos === 'right' && (
-				<Button
-					isLoading={isLoading}
-					buttonStyles={buttonClasses}
-					icon={<MagnifyingGlassIcon className='h-6 w-6' />}
-					onClick={() => handleSearch(query)}
-					variant='text'
-				/>
-			)}
+			<span className='absolute right-3 top-1/2 h-6 w-6 -translate-y-1/2 text-gray peer-focus:text-gray-900'>
+				{inputRef.current?.value.length === 0 ? (
+					<MagnifyingGlassIcon />
+				) : (
+					<XMarkIcon className='h-6 w-6 cursor-pointer' onClick={handleClearQuery} />
+				)}
+			</span>
 		</div>
 	)
 }
